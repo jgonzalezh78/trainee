@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="calculadora" class="com.gft.trainees.g4.springstandalone.CalculadoraImpl"/>
+	
+	<!-- <bean id="transporte" class="com.gft.trainees.g4.springstandalone.otro.Transporte"/>-->
+	<bean id="transporte" class="com.gft.trainees.g4.springstandalone.otro.Transporte">
+		<property name="compania" value="GFT"></property>
+	</bean>
+   
+    <bean id="empresa" class="com.gft.trainees.g4.springstandalone.Empresa">
+    	<constructor-arg ref="transporte"/>    	
+    </bean>
+   
+    <bean id="testInyeccion" class="com.gft.trainees.g4.springstandalone.TestInyeccion"></bean>
+   
+</beans>
