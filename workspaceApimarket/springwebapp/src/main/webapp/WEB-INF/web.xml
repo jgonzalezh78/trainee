@@ -1,0 +1,57 @@
+
+
+<web-app>
+
+	<display-name>springwebapp</display-name>
+
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>BorrameServlet</servlet-name>
+		<display-name>BorrameServlet</display-name>
+		<description></description>
+		<servlet-class>com.gft.trainee.apimarket.servlet.BorrameServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>BorrameServletTest</servlet-name>
+		<display-name>BorrameServletTest</display-name>
+		<description></description>
+		<servlet-class>com.gdt.trainee.apimarket.servlet.BorrameServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Borrame</display-name>
+		<servlet-name>Borrame</servlet-name>
+		<servlet-class>borrame.Borrame</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>BorrameServlet</servlet-name>
+		<url-pattern>/BorrameServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BorrameServletTest</servlet-name>
+		<url-pattern>/BorrameServletTest</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Borrame</servlet-name>
+		<url-pattern>/Borrame</url-pattern>
+	</servlet-mapping>
+
+
+
+
+
+</web-app>
