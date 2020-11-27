@@ -25,7 +25,7 @@ public class DTOCustomerMapper implements Mapper<DTOCustomer, IntCustomer> {
 	@Override
 	public DTOCustomer outMapper(IntCustomer intCustomer ) {
 		DTOCustomer dtoCustomer = null;
-		if(dtoCustomer != null) {
+		if(intCustomer != null) {
 			dtoCustomer = new DTOCustomer();
 			dtoCustomer.setEdad(intCustomer.getEdad());
 			dtoCustomer.setFechaNacimiento(intCustomer.getFechaNacimiento());

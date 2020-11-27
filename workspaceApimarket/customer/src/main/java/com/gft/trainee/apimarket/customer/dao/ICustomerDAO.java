@@ -2,14 +2,14 @@ package com.gft.trainee.apimarket.customer.dao;
 
 import java.util.List;
 
-import com.gft.trainee.apimarket.customer.dao.model.CustomerEntity;
+import com.gft.trainee.apimarket.customer.business.dto.IntCustomer;
 
 public interface ICustomerDAO {
 
-	public CustomerEntity createCustomer(CustomerEntity CustomerEntity);
-	public CustomerEntity updateCustomer(CustomerEntity CustomerEntity,Long id);
-	public CustomerEntity deleeCustomer(CustomerEntity CustomerEntity,Long id);
-	public CustomerEntity getCustomer(CustomerEntity CustomerEntity);
-	public List<CustomerEntity> getCustomer();
+	public IntCustomer createCustomer(IntCustomer CustomerEntity);
+	public IntCustomer updateCustomer(IntCustomer CustomerEntity,Long id);
+	public IntCustomer deleeCustomer(IntCustomer CustomerEntity,Long id);
+	public IntCustomer getCustomer(IntCustomer CustomerEntity);
+	public List<IntCustomer> getCustomer();
 	
 }

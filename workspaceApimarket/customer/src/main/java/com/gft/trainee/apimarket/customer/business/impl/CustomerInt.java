@@ -2,18 +2,23 @@ package com.gft.trainee.apimarket.customer.business.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.gft.trainee.apimarket.customer.business.ICustomerInt;
 import com.gft.trainee.apimarket.customer.business.dto.IntCustomer;
+import com.gft.trainee.apimarket.customer.dao.ICustomerDAO;
 
 @Component
 public class CustomerInt implements ICustomerInt {
 
+	@Autowired
+	private ICustomerDAO customerDAO;
+	
+	
 	@Override
-	public IntCustomer createCustomer(IntCustomer dtoCustomer) {
-		// TODO Auto-generated method stub
-		return null;
+	public IntCustomer createCustomer(IntCustomer intCustomer) {		
+		return customerDAO.createCustomer(intCustomer);
 	}
 
 	@Override
@@ -29,9 +34,8 @@ public class CustomerInt implements ICustomerInt {
 	}
 
 	@Override
-	public IntCustomer getCustomer(IntCustomer dtoCustomer) {
-		// TODO Auto-generated method stub
-		return null;
+	public IntCustomer getCustomer(IntCustomer intCustomer) {
+		return customerDAO.getCustomer(intCustomer);
 	}
 
 	@Override
