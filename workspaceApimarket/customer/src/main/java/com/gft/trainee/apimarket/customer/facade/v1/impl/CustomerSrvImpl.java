@@ -1,6 +1,7 @@
 package com.gft.trainee.apimarket.customer.facade.v1.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.function.ServerRequest.Headers;
 
 import com.gft.trainee.apimarket.customer.business.ICustomerInt;
 import com.gft.trainee.apimarket.customer.business.dto.IntCustomer;
@@ -69,10 +69,34 @@ public class CustomerSrvImpl implements ICustomerSrv {
 		return new ResponseEntity<DTOCustomer>(dtoCustomer,headers,dtoCustomer!=null?HttpStatus.FOUND:HttpStatus.NOT_FOUND);
 	}
 
-	@Override
+	@GetMapping
 	public List<DTOCustomer> getCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		/*
+		List<IntCustomer> intCustomerList = customerInt.getCustomer();
+		List<DTOCustomer> dtoCustomerList = null;
+		
+		if(intCustomerList != null && intCustomerList.size()>0) {
+			dtoCustomerList = new ArrayList();			
+			for(IntCustomer intcustomer:intCustomerList) {
+				dtoCustomerList.add(mapperCustomer.outMapper(intcustomer));
+			}
+		}*/
+		
+		/*
+		List<DTOCustomer> dtoCustomerList = customerInt.getCustomer().stream()
+											.map(intCustomer -> mapperCustomer.outMapper(intCustomer))
+											.collect(Collectors.toList());
+		*/
+		
+
+		List<DTOCustomer> dtoCustomerList = customerInt.getCustomer()
+											.parallelStream()
+											.map(intCustomer -> mapperCustomer.outMapper(intCustomer))											
+											.collect(Collectors.toList());
+											
+		
+		return dtoCustomerList;
 	}
 
 }

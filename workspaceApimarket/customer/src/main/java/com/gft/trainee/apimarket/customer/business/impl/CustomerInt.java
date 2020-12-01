@@ -40,8 +40,7 @@ public class CustomerInt implements ICustomerInt {
 
 	@Override
 	public List<IntCustomer> getCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		return customerDAO.getCustomer();
 	}
 
 }

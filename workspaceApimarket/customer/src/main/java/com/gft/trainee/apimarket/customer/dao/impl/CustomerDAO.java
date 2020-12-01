@@ -2,6 +2,7 @@ package com.gft.trainee.apimarket.customer.dao.impl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -51,8 +52,15 @@ public class CustomerDAO implements ICustomerDAO {
 
 	@Override
 	public List<IntCustomer> getCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Iterable<CustomerEntity> customerIterable = customerRepository.findAll();
+		List<CustomerEntity> customerEntirtyList = (List<CustomerEntity>)customerIterable;
+		List<IntCustomer>  intCustomerList  = customerEntirtyList
+												.stream()
+												.map(x -> customerDAOMapper.CustomerEntityToIntCustomer(x))
+												.collect(Collectors.toList());
+		
+		return intCustomerList;
 	}
 
 	
