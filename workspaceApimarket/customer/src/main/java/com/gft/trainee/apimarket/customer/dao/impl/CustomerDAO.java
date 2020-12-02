@@ -31,15 +31,34 @@ public class CustomerDAO implements ICustomerDAO {
 	}
 
 	@Override
-	public IntCustomer updateCustomer(IntCustomer CustomerEntity, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public IntCustomer updateCustomer(IntCustomer intCustomer) throws Exception {
+		System.out.println("id["+intCustomer.getId()+"]");
+		Optional<CustomerEntity> optional = customerRepository.findById(customerDAOMapper.IntCustomerToCustomerEntity(intCustomer).getId());
+		
+		if(optional.isPresent()) {
+			CustomerEntity customerEntity = optional.get();
+			System.out.println("id["+customerEntity.getId()+"]");
+			customerEntity.setEdad(intCustomer.getEdad()!=null?intCustomer.getEdad():customerEntity.getEdad());
+			customerEntity.setFechaNacimiento(intCustomer.getFechaNacimiento()!=null?intCustomer.getFechaNacimiento():customerEntity.getFechaNacimiento());
+			customerEntity.setGenero(intCustomer.getGenero()!=null?intCustomer.getGenero():customerEntity.getGenero());
+			customerEntity.setNombre(intCustomer.getNombre()!=null?intCustomer.getNombre():customerEntity.getNombre());
+			intCustomer = customerDAOMapper.CustomerEntityToIntCustomer(customerRepository.save(customerEntity));
+		}else {
+			throw new Exception("No se encuentra el elemento a actualizar");
+		}
+		
+		return intCustomer;
 	}
 
 	@Override
-	public IntCustomer deleeCustomer(IntCustomer CustomerEntity, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean deleteCustomer(IntCustomer intCustomer) {
+		
+		Boolean existe = false;
+		if(customerRepository.findById(customerDAOMapper.IntCustomerToCustomerEntity(intCustomer).getId()).isPresent()) {
+			customerRepository.deleteById(customerDAOMapper.IntCustomerToCustomerEntity(intCustomer).getId());
+			existe = true;
+		}		
+		return existe;
 	}
 
 	@Override

@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,16 +43,39 @@ public class CustomerSrvImpl implements ICustomerSrv {
 				customerInt.createCustomer(mapperCustomer.inMapper(dtoCustomer)));
 	}
 
-	@Override
-	public DTOCustomer updateCustomer(DTOCustomer dtoCustomer, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	@PutMapping(path = "/{id}")
+	public ResponseEntity<DTOCustomer> updateCustomer(@RequestBody DTOCustomer dtoCustomer,@PathVariable Long id) {
+		Boolean respuesta = null;
+		ResponseEntity<DTOCustomer> responseEntity =	null;
+		
+		if(id != null && id > 0) {
+			dtoCustomer.setId(id);
+			System.out.println("facade id["+dtoCustomer.getId()+"]");
+			try {
+				dtoCustomer = mapperCustomer.outMapper(customerInt.updateCustomer(mapperCustomer.inMapper(dtoCustomer)));	
+				respuesta = true;
+			}catch(Exception e) {
+				respuesta = false;
+				dtoCustomer = null;
+			}
+			if(respuesta !=null) {
+				responseEntity = new ResponseEntity<DTOCustomer>(dtoCustomer,null,respuesta?HttpStatus.OK:HttpStatus.NOT_FOUND);
+			}
+		}
+		
+		return responseEntity;
 	}
 
-	@Override
-	public DTOCustomer deleeCustomer(DTOCustomer dtoCustomer, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	@DeleteMapping(path = "/{id}")
+	public ResponseEntity<Boolean> deleteCustomer(@PathVariable Long id) {
+		DTOCustomer dtoCustomer = null;
+		Boolean respuesta = null;
+		if(id != null && id > 0) {
+			dtoCustomer = new DTOCustomer();
+			dtoCustomer.setId(id);
+			respuesta = customerInt.deleteCustomer(mapperCustomer.inMapper(dtoCustomer));	
+		}
+		return new ResponseEntity<Boolean>(respuesta,null,respuesta!=null && respuesta?HttpStatus.OK:HttpStatus.NOT_FOUND);
 	}
 
 	@GetMapping(path = "/{id}")

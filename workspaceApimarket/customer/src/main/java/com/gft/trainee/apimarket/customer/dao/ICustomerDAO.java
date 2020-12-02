@@ -7,8 +7,8 @@ import com.gft.trainee.apimarket.customer.business.dto.IntCustomer;
 public interface ICustomerDAO {
 
 	public IntCustomer createCustomer(IntCustomer CustomerEntity);
-	public IntCustomer updateCustomer(IntCustomer CustomerEntity,Long id);
-	public IntCustomer deleeCustomer(IntCustomer CustomerEntity,Long id);
+	public IntCustomer updateCustomer(IntCustomer CustomerEntity)  throws Exception;
+	public Boolean deleteCustomer(IntCustomer CustomerEntity);
 	public IntCustomer getCustomer(IntCustomer CustomerEntity);
 	public List<IntCustomer> getCustomer();
 	

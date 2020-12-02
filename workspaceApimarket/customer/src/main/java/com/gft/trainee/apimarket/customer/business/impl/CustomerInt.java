@@ -22,15 +22,14 @@ public class CustomerInt implements ICustomerInt {
 	}
 
 	@Override
-	public IntCustomer updateCustomer(IntCustomer dtoCustomer, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public IntCustomer updateCustomer(IntCustomer intCustomer) throws Exception {
+		return customerDAO.updateCustomer(intCustomer);
 	}
 
 	@Override
-	public IntCustomer deleeCustomer(IntCustomer dtoCustomer, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Boolean deleteCustomer(IntCustomer intCustomer) {
+		return customerDAO.deleteCustomer(intCustomer);
+		
 	}
 
 	@Override
