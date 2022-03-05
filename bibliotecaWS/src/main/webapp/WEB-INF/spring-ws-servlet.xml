@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/util  http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+
+
+	<bean id="calculo" class="com.gft.staters.g2.spring.Calculo">
+		<constructor-arg index="0" ref="calculadora"/>
+		<constructor-arg index="1" value="nomina"/>
+		<constructor-arg index="2" value="1000.00"/>
+		<constructor-arg index="3" value="15"/>
+	</bean>
+	
+	<bean id="calculadora" class="com.gft.staters.g2.spring.Calculadora">	
+		<property name="modelo" value="49g"></property>
+		<property name="marca" value="HP"></property>		
+	</bean>
+
+	
+
+</beans>

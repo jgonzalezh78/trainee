@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CalculadoraService WSDL service -->
+
+  <service name="Calculadora" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.g2.starters.gft.com"/>
+      <parameter name="wsdlServiceElement" value="CalculadoraService"/>
+      <parameter name="schemaQualified" value="http://service.g2.starters.gft.com"/>
+      <parameter name="wsdlServicePort" value="Calculadora"/>
+      <parameter name="className" value="com.gft.starters.g2.service.Calculadora"/>
+      <parameter name="wsdlPortType" value="Calculadora"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.g2.starters.gft.com" xmlns:retNS="http://service.g2.starters.gft.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="division" qname="operNS:division" returnQName="retNS:divisionReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://service.g2.starters.gft.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operador1" type="tns:double"/>
+        <parameter xmlns:pns="http://service.g2.starters.gft.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operador2" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://service.g2.starters.gft.com" xmlns:retNS="http://service.g2.starters.gft.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="resta" qname="operNS:resta" returnQName="retNS:restaReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://service.g2.starters.gft.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operador1" type="tns:double"/>
+        <parameter xmlns:pns="http://service.g2.starters.gft.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operador2" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://service.g2.starters.gft.com" xmlns:retNS="http://service.g2.starters.gft.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="multiplicacion" qname="operNS:multiplicacion" returnQName="retNS:multiplicacionReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://service.g2.starters.gft.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operador1" type="tns:double"/>
+        <parameter xmlns:pns="http://service.g2.starters.gft.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operador2" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://service.g2.starters.gft.com" xmlns:retNS="http://service.g2.starters.gft.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="suma" qname="operNS:suma" returnQName="retNS:sumaReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://service.g2.starters.gft.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operador1" type="tns:double"/>
+        <parameter xmlns:pns="http://service.g2.starters.gft.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:operador2" type="tns:double"/>
+      </operation>
+      <parameter name="allowedMethods" value="division suma multiplicacion resta"/>
+
+  </service>
+</deployment>
